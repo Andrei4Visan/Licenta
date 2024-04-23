@@ -10,8 +10,7 @@
                     <option value="50">50</option>
                     <option value="100">100</option>
                 </select>
-<!--                <span class = "ml-3">S-au gasit {{products.total}} products</span>-->
-
+                <span class="ml-3">S-au gasit {{ fetchedProducts.total }} produse</span>
             </div>
         </div>
         <input v-model="search" @change="getProducts(null)"
@@ -131,7 +130,7 @@
 import { onMounted, ref, computed } from "vue";
 import store from "../../store/index.js";
 import { PRODUCTS_PER_PAGE } from "../../constants.js";
-// import products from "./Products.vue";
+// import products from "./Users.vue";
 import TableHeaderCell from "../../components/core/Table/TableHeaderCell.vue";
 import { Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
 import {DotsVerticalIcon, PencilIcon, TrashIcon} from '@heroicons/vue/outline'

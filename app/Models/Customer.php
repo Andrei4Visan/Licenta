@@ -20,7 +20,7 @@ class Customer extends Model
         return $this->belongsTo(User::class);
     }
 
-    private function _getAddresses(): HasOne
+    public function _getAddresses(): HasOne
     {
         return $this->hasOne(CustomerAddress::class, 'customer_id', 'user_id');
     }

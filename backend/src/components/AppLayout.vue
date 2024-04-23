@@ -36,6 +36,7 @@ onMounted(() => {
     window.addEventListener('resize', handleSidebarOpened)
 })
 onUnmounted(() => {
+    store.dispatch('getCurrentUser')
     window.removeEventListener('resize', handleSidebarOpened)
 })
 function handleSidebarOpened(){
