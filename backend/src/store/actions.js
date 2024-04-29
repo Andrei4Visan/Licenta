@@ -27,6 +27,12 @@ export function logout({commit}){
         })
 }
 
+export function getCountries({commit}){
+    axiosClient.get('countries')
+        .then(({data})=>
+        commit('setCountries', data))
+}
+
 export function getProducts({commit},{url = null, search = '', perPage = 10, sort_field, sort_direction} = {}){
     commit('setProducts',[true])
     url = url || '/products';
@@ -56,6 +62,21 @@ export function getUsers({commit},{url = null, search = '', perPage = 10, sort_f
 
 }
 
+export function getCustomers({commit},{url = null, search = '', perPage = 10, sort_field, sort_direction} = {}){
+    commit('setCustomers',[true])
+    url = url || '/customers';
+    return axiosClient.get(url, {
+        params: {search, per_page: perPage, sort_field, sort_direction}
+    })
+        .then(res =>{
+            commit('setCustomers',[false, res.data])
+        })
+        .catch(()=>{
+            commit('setCustomers',[false])
+        })
+
+}
+
 export function getOrders({commit},{url = null, search = '', perPage = 10, sort_field, sort_direction} = {}){
     commit('setOrders',[true])
     url = url || '/orders';
@@ -75,9 +96,9 @@ export function getProduct({}, id){
     return axiosClient.get(`/products/${id}`)
 }
 
-export function getUser({}, id){
-    return axiosClient.get(`/users/${id}`)
-}
+// export function getUser({}, id){
+//     return axiosClient.get(`/users/${id}`)
+// }
 
 export function getOrder({}, id){
     return axiosClient.get(`/orders/${id}`)
@@ -94,11 +115,6 @@ export function createProduct({commit}, product){
     }
     return axiosClient.post('/products', product)
 }
-
-export function createUser({commit}, user){
-    return axiosClient.post('/users', user)
-}
-
 export function updateProduct({commit}, product){
     const id = product.id
     if(product.image instanceof File){
@@ -115,12 +131,37 @@ export function updateProduct({commit}, product){
     }
     return axiosClient.post(`/products/${id}`, product)
 }
+export function deleteProduct({commit}, id){
+    return axiosClient.delete(`/products/${id}`)
+}
+
+export function createUser({commit}, user){
+    return axiosClient.post('/users', user)
+}
+
+export function createCustomer({commit}, customer){
+    return axiosClient.post('/customers', customer)
+}
+
+
 
 export function updateUser({commit}, user){
 
     return axiosClient.put(`/users/${user.id}`, user)
 }
 
-export function deleteProduct({commit}, id){
-    return axiosClient.delete(`/products/${id}`)
+export function updateCustomer({commit}, customer){
+
+    return axiosClient.put(`/customers/${customer.id}`, customer)
 }
+
+export function deleteCustomer({commit}, customer){
+
+    return axiosClient.delete(`/customers/${customer.id}`)
+}
+
+export function getCustomer({commit}, id){
+    return axiosClient.get(`/customers/${id}`)
+}
+
+

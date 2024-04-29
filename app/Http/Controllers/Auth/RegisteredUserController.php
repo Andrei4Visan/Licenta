@@ -55,9 +55,6 @@ class RegisteredUserController extends Controller
         $customer->first_name = $names[0];
         $customer->last_name = $names[1] ?? ' ';
         $customer->save();
-
-
-
         Auth::login($user);
 
         Cart::moveCartItemsIntoDb();

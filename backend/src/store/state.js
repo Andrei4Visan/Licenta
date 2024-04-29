@@ -23,6 +23,17 @@ const store = {
         limit: null,
         total: null
     },
+    customers:{
+        loading: false,
+        data: [],
+        links: [],
+        from: null,
+        to: null,
+        page: 1,
+        limit: null,
+        total: null
+    },
+    countries:[],
     orders:{
         loading: false,
         data: [],
@@ -32,7 +43,8 @@ const store = {
         page: 1,
         limit: null,
         total: null
-    }
+    },
+
 }
 
 export default store;

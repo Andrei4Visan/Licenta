@@ -68,3 +68,26 @@ export function setUsers(state,[loading, response= null]){
     // state.products.links = response.links
 }
 
+export function setCustomers(state,[loading, response= null]){
+    if(response){
+        state.customers = {
+            // ...state.products,
+            data: response.data,
+            links: response.meta.links,
+            total: response.meta.total,
+            limit: response.meta.per_page,
+            from: response.meta.from,
+            to: response.meta.to,
+            current_page: response.meta.current_page,
+        }
+    }
+    state.users.loading = loading;
+    // state.products.data = response.data;
+    // state.products.links = response.links
+}
+
+export function setCountries(state, countries){
+    state.countries = countries.data;
+}
+
+

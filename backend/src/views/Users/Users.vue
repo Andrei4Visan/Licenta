@@ -35,8 +35,8 @@ function showAddNewModal() {
     showUserModal.value = true
 }
 
-function editUser(u) {
-    userModel.value = u;
+function editUser(c) {
+    userModel.value = c;
     showAddNewModal();
 }
 

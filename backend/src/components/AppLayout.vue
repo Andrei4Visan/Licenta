@@ -30,15 +30,26 @@ function toggleSidebar(){
     sidebarOpened.value = !sidebarOpened.value
 }
 
-onMounted(() => {
-    store.dispatch('getUser');
-    handleSidebarOpened();
-    window.addEventListener('resize', handleSidebarOpened)
-})
-onUnmounted(() => {
+onMounted(()=>{
     store.dispatch('getCurrentUser')
-    window.removeEventListener('resize', handleSidebarOpened)
+    store.dispatch('getCountries')
+    handleSidebarOpened();
+    window.addEventListener('resize',handleSidebarOpened)
 })
+
+onUnmounted(()=>{
+    window.removeEventListener('resize',handleSidebarOpened )
+})
+
+// // onMounted(() => {
+// //     store.dispatch('getUser');
+// //     handleSidebarOpened();
+// //     window.addEventListener('resize', handleSidebarOpened)
+// // })
+// onUnmounted(() => {
+//     store.dispatch('getCurrentUser')
+//     window.removeEventListener('resize', handleSidebarOpened)
+// })
 function handleSidebarOpened(){
     sidebarOpened.value = window.outerWidth > 768;
 

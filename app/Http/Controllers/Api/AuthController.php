@@ -30,6 +30,12 @@ class AuthController extends Controller
                 'message' => 'Nu ai permisiunea să te autentifici ca admin!'
             ], 403); //403 = interzis
         }
+        if(!$user->email_verified_at){
+            Auth::logout();
+            return response([
+                'message' => 'Emailul tau nu este verificat!'
+            ], 403); //403 = interzis
+        }
         $token = $user->createToken('main')->plainTextToken;
 
         return response([

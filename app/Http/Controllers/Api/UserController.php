@@ -46,13 +46,14 @@ class UserController extends Controller
     public function store(CreateUserRequest $request)
     {
        $data = $request->validated();
-       $data ['is_admin'] = true;
+       $data['is_admin'] = $data['is_admin'] ?? 1;
+       $data['email_verified_at'] = date('Y-m-d H-m-s');
        $data['password'] = Hash::make($data['password']);
        $data['created_by'] = $request->user()->id;
        $data['updated_by'] = $request->user()->id;
-
-        $user = User::create($data);
-        return new UserResource($user);
+       ;
+       $user = User::create($data);
+       return new UserResource($user);
     }
 
     /**

@@ -10,6 +10,7 @@ import Products from "../views/Products/Products.vue";
 import Users from "../views/Users/Users.vue";
 import Orders from "../views/Orders/Orders.vue";
 import OrderView from "../views/Orders/OrderView.vue";
+import Customers from "../views/Customers/Customers.vue";
 // import dashboard from "../views/Dashboard.vue";
 
 
@@ -38,6 +39,11 @@ const routes = [
                 path: 'users',
                 name: 'app.users',
                 component: Users
+            },
+            {
+                path: 'customers',
+                name: 'app.customers',
+                component: Customers
             },
 
             {
