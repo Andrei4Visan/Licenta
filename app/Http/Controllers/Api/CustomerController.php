@@ -42,6 +42,7 @@ class CustomerController extends Controller
                 ->orWhere('customers.phone', 'like', "%{$search}%");
         }
 
+//        $paginator = $query->paginate($perPage);
         $paginator = $query->paginate($perPage);
 
         return CustomerListResource::collection($paginator);

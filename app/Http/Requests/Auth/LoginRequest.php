@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Enums\CustomerStatus;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -37,15 +38,27 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function authenticate(): void
+    public function authenticate()
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        if (!Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
+            ]);
+        }
+
+        $user = $this->user();
+        $customer = $user->customer;
+        if ($customer->status !== CustomerStatus::Active->value) {
+            Auth::guard('web')->logout();
+            $this->session()->invalidate();
+            $this->session()->regenerateToken();
+
+            throw ValidationException::withMessages([
+                'email' => 'Your account has been disabled',
             ]);
         }
 

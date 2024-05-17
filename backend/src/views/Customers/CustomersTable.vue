@@ -11,7 +11,7 @@
                     <option value="50">50</option>
                     <option value="100">100</option>
                 </select>
-                <span class="ml-3">S-au găsit {{customers.total}} utilizatori</span>
+                <span class="ml-3">Found {{customers.total}} customers</span>
             </div>
             <div>
                 <input v-model="search" @change="getCustomers(null)"
@@ -28,35 +28,42 @@
                     ID
                 </TableHeaderCell>
                 <TableHeaderCell field="name" :sort-field="sortField" :sort-direction="sortDirection"
-                                 @click="sortCustomers('email')">
-                    Nume
+                                 @click="sortCustomers('name')">
+                    Name
                 </TableHeaderCell>
                 <TableHeaderCell field="email" :sort-field="sortField" :sort-direction="sortDirection"
                                  @click="sortCustomers('email')">
                     Email
                 </TableHeaderCell>
+                <TableHeaderCell field="phone" :sort-field="sortField" :sort-direction="sortDirection"
+                                 @click="sortCustomers('phone')">
+                    Phone
+                </TableHeaderCell>
+                <TableHeaderCell field="status" :sort-field="sortField" :sort-direction="sortDirection"
+                                 @click="sortCustomers('status')">
+                    Status
+                </TableHeaderCell>
                 <TableHeaderCell field="created_at" :sort-field="sortField" :sort-direction="sortDirection"
                                  @click="sortCustomers('created_at')">
-                    Data înregistrarii
+                    Register Date
                 </TableHeaderCell>
                 <TableHeaderCell field="actions">
-                    Acțiuni
+                    Actions
                 </TableHeaderCell>
             </tr>
             </thead>
             <tbody v-if="customers.loading || !customers.data.length">
             <tr>
-                <td colspan="6">
-                    <Spinner v-if="customers.loading"/>
-                    <p v-else class="text-center py-8 text-gray-700">
+                <td colspan="7">
+
+                    <p class="text-center py-8 text-gray-700">
                         There are no customers
                     </p>
                 </td>
             </tr>
             </tbody>
             <tbody v-else>
-            <tr v-for="(customer, index) of customers.data" :key="customer.id" class="animate-fade-in-down" :style="{'animation-delay':`${index * 0.1}s`}">
-
+            <tr v-for="(customer, index) of customers.data">
                 <td class="border-b p-2 ">{{ customer.id }}</td>
                 <td class="border-b p-2 ">
                     {{ customer.first_name }} {{ customer.last_name }}
@@ -65,61 +72,68 @@
                     {{ customer.email }}
                 </td>
                 <td class="border-b p-2">
+                    {{ customer.phone }}
+                </td>
+                <td class="border-b p-2">
+                    {{ customer.status }}
+                </td>
+                <td class="border-b p-2">
                     {{ customer.created_at }}
                 </td>
                 <td class="border-b p-2 ">
-                    <Menu as = "div" class="relative inline-block text-left">
+                    <Menu as="div" class="relative inline-block text-left">
                         <div>
                             <MenuButton
                                 class="inline-flex items-center justify-center w-full justify-center rounded-full w-10 h-10 bg-black bg-opacity-0 text-sm font-medium text-white hover:bg-opacity-5 focus:bg-opacity-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                             >
                                 <DotsVerticalIcon
-                                    class = "h-5 w-5 text-orange-500"
+                                    class="h-5 w-5 text-orange-500"
                                     aria-hidden="true"/>
-
-
                             </MenuButton>
-
                         </div>
+
                         <transition
                             enter-active-class="transition duration-100 ease-out"
-                            enter-from-class="transform sclae-95 opacity-0"
+                            enter-from-class="transform scale-95 opacity-0"
                             enter-to-class="transform scale-100 opacity-100"
                             leave-active-class="transition duration-75 ease-in"
                             leave-from-class="transform scale-100 opacity-100"
-                            leave-to-class="transform scale-95 opacity-0">
-
+                            leave-to-class="transform scale-95 opacity-0"
+                        >
                             <MenuItems
-                                class = "class=absolute z-10 right-0 mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                class="absolute z-10 right-0 mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             >
-                                <div class = "px-1 py-1">
-                                    <MenuItem v-slot = "{active}">
+                                <div class="px-1 py-1">
+                                    <MenuItem v-slot="{ active }">
                                         <button
                                             :class="[
-                                            active ? 'bg-orange-600 text-white' : 'text-gray-900',
-                                            'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                                        ]"
-                                            @click = "editCustomer(customer)">
+                        active ? 'bg-orange-600 text-white' : 'text-gray-900',
+                        'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                      ]"
+                                            @click="editCustomer(customer)"
+                                        >
                                             <PencilIcon
-                                                :active = "active"
-                                                class = "mr-2 h-5 w-5 text-orange-400"
-                                                aria-hidden="true"/>
-                                            Editeaza
+                                                :active="active"
+                                                class="mr-2 h-5 w-5 text-orange-400"
+                                                aria-hidden="true"
+                                            />
+                                            Edit
                                         </button>
                                     </MenuItem>
-                                    <MenuItem v-slot = "{active}">
+                                    <MenuItem v-slot="{ active }">
                                         <button
-                                            :class = "[
-                                            active ? 'bg-orange-600 text-white' : 'text-gray-900',
-                                            'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                                        ]"
-                                            @click = "deleteCustomer(customer)"
+                                            :class="[
+                        active ? 'bg-orange-600 text-white' : 'text-gray-900',
+                        'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                      ]"
+                                            @click="deleteCustomer(customer)"
                                         >
                                             <TrashIcon
-                                                :active = "active"
+                                                :active="active"
                                                 class="mr-2 h-5 w-5 text-orange-400"
-                                                aria-hidden="true"/>
-                                            Sterge
+                                                aria-hidden="true"
+                                            />
+                                            Delete
                                         </button>
                                     </MenuItem>
                                 </div>
@@ -168,13 +182,14 @@
 <script setup>
 import {computed, onMounted, ref} from "vue";
 import store from "../../store";
-import {USERS_PER_PAGE} from "../../constants";
+
+import {CUSTOMERS_PER_PAGE} from "../../constants";
 import TableHeaderCell from "../../components/core/Table/TableHeaderCell.vue";
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
 import {DotsVerticalIcon, PencilIcon, TrashIcon} from '@heroicons/vue/outline'
 import CustomerModal from "./CustomerModal.vue";
 
-const perPage = ref(USERS_PER_PAGE);
+const perPage = ref(CUSTOMERS_PER_PAGE);
 const search = ref('');
 const customers = computed(() => store.state.customers);
 const sortField = ref('updated_at');

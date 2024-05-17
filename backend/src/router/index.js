@@ -87,6 +87,11 @@ const routes = [
         path: '/:pathMatch(.*)',
         name: 'notfound',
         component: Registration
+    },
+    {
+        path: '/test',
+        name: 'test',
+        component: { template: '<div>Test route working!</div>' }
     }
 ]
 
