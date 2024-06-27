@@ -22,4 +22,4 @@ axiosClient.interceptors.response.use(response=>{
     throw error;
 })
 
-export default axiosClient; // Aici trebuie să fie exportul implicit
+export default axiosClient;

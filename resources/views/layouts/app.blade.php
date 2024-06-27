@@ -10,13 +10,6 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-
-
-
-    <!-- Alpine Plugins -->
-
-
-
     <style>
         [x-cloak] {
             display: none !important;

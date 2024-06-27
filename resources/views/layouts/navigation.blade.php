@@ -7,8 +7,12 @@
     class="flex justify-between bg-orange-800 shadow-md text-white"
 >
     <div>
-        <a href="{{route('home')}}" class="block py-navbar-item pl-5"> Logo </a>
+        <a href="{{route('home')}}" class="block py-navbar-item pl-5">
+            <img src="{{ asset('images/VSN STUDIO.png') }}" alt="Logo" class="h-10"> <!-- Adjust height as needed -->
+        </a>
     </div>
+
+
     <!-- Responsive Menu -->
     <div
         class="block fixed z-10 top-0 bottom-0 height h-full w-[220px] transition-all bg-orange-900 md:hidden"
@@ -280,7 +284,7 @@ Când un formular este trimis, Laravel verifică prezența și validitatea acest
                           d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                       />
                     </svg>
-                    My Account
+                    Contul meu
                   </span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -404,7 +408,7 @@ Când un formular este trimis, Laravel verifică prezența și validitatea acest
                         href="{{route('register')}}"
                         class="inline-flex items-center text-white bg-emerald-600 py-2 px-3 rounded shadow-md hover:bg-emerald-700 active:bg-emerald-800 transition-colors mx-5"
                     >
-                        Register now
+                        Înregistrează-te acum
                     </a>
                 </li>
             @endif

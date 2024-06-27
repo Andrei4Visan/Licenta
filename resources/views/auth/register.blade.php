@@ -17,7 +17,7 @@
         </p>
         <div class="mb-4">
             <x-input
-                placeholder="Your name"
+                placeholder="Numele tău"
                 type="text"
                 name="name"
 
@@ -27,7 +27,7 @@
 
         <div class="mb-4">
             <x-input
-                placeholder="Your Email"
+                placeholder="Email-ul tău"
                 type="email"
                 name="email"
 
@@ -36,7 +36,7 @@
         </div>
         <div class="mb-4">
             <x-input
-                placeholder="Password"
+                placeholder="Parola"
                 type="password"
                 name="password"
 
@@ -46,7 +46,7 @@
 
         <div class="mb-4">
             <x-input
-                placeholder="Repeat Password"
+                placeholder="Repetă Parola"
                 type="password"
                 name="password_confirmation"
 
@@ -57,7 +57,7 @@
         <button
             class="btn-primary bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 w-full"
         >
-            Signup
+            Înregistrare
         </button>
     </form>
 {{--    <form method="POST" action="{{ route('register') }}">--}}

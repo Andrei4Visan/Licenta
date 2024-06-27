@@ -118,21 +118,7 @@ class CheckoutController extends Controller
                 $this->updateOrderAndSession($payment);
             }
 
-//            $payment->status = PaymentStatus::Paid;
-//            $payment->update();
-//            $order = $payment->order;
-//
-//
-//
-//            $order->status = OrderStatus::Paid;
-//            $order->update();
-
-
-
             $customer = \Stripe\Customer::retrieve($session->customer);
-
-
-
             return view('checkout.success', compact('customer'));
 
         }catch(\Exception $e){
@@ -140,11 +126,6 @@ class CheckoutController extends Controller
             return view('checkout.failure',['message' => $e->getMessage()]);
 
         }
-
-//        dd($session ,$customer);
-//
-//
-//        dd($request->all());
 
     }
     public function failure(Request $request)

@@ -23,10 +23,11 @@ class CountrySeeder extends Seeder
             "CA" => 'California',
         ];
         $countries = [
-            ['code' => 'geo', 'name' => 'Georgia', 'states' => null],
+            ['code' => 'geo', 'name' => 'Romania', 'states' => null],
             ['code' => 'ind', 'name' => 'India', 'states' => null],
             ['code' => 'usa', 'name' => 'United States of America', 'states' => json_encode($usaStates)],
-            ['code' => 'ger', 'name' => 'Germany', 'states' => null],
+            ['code' => 'ger', 'name' => 'Germania', 'states' => null],
+
         ];
         Country::insert($countries);
     }

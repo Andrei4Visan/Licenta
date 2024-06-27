@@ -82,7 +82,6 @@ const routes = [
         },
         component: ResetPassword
     },
-
     {
         path: '/:pathMatch(.*)',
         name: 'notfound',

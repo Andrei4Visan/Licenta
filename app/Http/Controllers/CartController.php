@@ -22,8 +22,7 @@ class CartController extends Controller
         return view('cart.index', compact('cartItems', 'products', 'total'));
     }
 
-    public function add(Request $request, Product $product)
-    {
+    public function add(Request $request, Product $product){
         $quantity = $request->post('quantity', 1);
         $user = $request->user();
         if ($user) {
@@ -41,8 +40,7 @@ class CartController extends Controller
             }
             return response([
                 'count' => Cart::getCartItemsCount()
-            ]);
-        } else {
+            ]);} else {
             $cartItems = json_decode($request->cookie('cart_items', '[]'), true);
             $productFound = false;
             foreach ($cartItems as &$item) {
@@ -61,9 +59,7 @@ class CartController extends Controller
                 ];
             }
             Cookie::queue('cart_items', json_encode($cartItems), 60 * 24 * 30);
-            return response(['count' => Cart::getCountFromItems($cartItems)]);
-        }
-    }
+            return response(['count' => Cart::getCountFromItems($cartItems)]);}}
 
     public function remove(Request $request, Product $product)
     {

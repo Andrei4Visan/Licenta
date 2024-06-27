@@ -46,8 +46,7 @@ export function setOrders(state,[loading, response= null]){
         }
     }
     state.orders.loading = loading;
-    // state.products.data = response.data;
-    // state.products.links = response.links
+
 }
 
 export function setUsers(state,[loading, response= null]){

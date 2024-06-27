@@ -29,17 +29,16 @@
                     <template x-for="product of cartItems" :key="product.id">
                         <<!-- Ne da posibiltatea de a folosi metodele facute in app js, prin x-data ul de mai jos -->>
                         <div x-data="productItem(product)">
-                            <div
-                                class="w-full flex flex-col sm:flex-row items-center gap-4 flex-1">
-                                <a :href="product.href"
-                                   class="w-36 h-32 flex items-center justify-center overflow-hidden">
-                                    <img :src="product.image" class="object-cover" alt=""/>
-                                </a>
+                            <div class="w-full flex flex-col sm:flex-row items-center gap-4 flex-1">
+                                {{--                                <a :href="product.href"--}}
+                                {{--                                   class="w-36 h-32 flex items-center justify-center overflow-hidden">--}}
+                                {{--                                    <img :src="product.image" class="object-cover" alt=""/>--}}
+                                {{--                                </a>--}}
                                 <div class="flex flex-col justify-between flex-1">
                                     <div class="flex justify-between mb-3">
-                                        <h3 x-text="product.title"></h3>
+                                        <h3 class="font-bold text-xl" x-text="product.title"></h3>
                                         <span class="text-lg font-semibold">
-                                            <span class = "text-lg font-semibold"  x-text="`${product.price} Lei`"></span>
+                                            <span class="text-lg font-semibold" x-text="`${product.price} Lei`"></span>
                                         </span>
                                     </div>
                                     <div class="flex justify-between items-center">

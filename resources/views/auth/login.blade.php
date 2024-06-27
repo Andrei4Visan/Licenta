@@ -12,10 +12,6 @@
             >Creează un cont nou</a
             >
         </p>
-
-
-
-
         <div class="mb-4">
             <x-input
                 id="loginEmail"
@@ -37,15 +33,15 @@
         </div>
 
         <div class="flex justify-between items-center mb-5">
-            <div class="flex items-center">
-                <input
-                    id="loginRememberMe"
-                    type="checkbox"
-                    class="mr-3 rounded border-gray-300 text-orange-500 focus:ring-orange-500"
-                />
-                <label for="loginRememberMe">Ține-mă minte</label>
-            </div>
-            <a href="{{route('password.request')}}" class="text-sm text-orange-700 hover:text-orange-600">Ți-ai uitat parola?</a>
+{{--            <div class="flex items-center">--}}
+{{--                <input--}}
+{{--                    id="loginRememberMe"--}}
+{{--                    type="checkbox"--}}
+{{--                    class="mr-3 rounded border-gray-300 text-orange-500 focus:ring-orange-500"--}}
+{{--                />--}}
+{{--                <label for="loginRememberMe">Ține-mă minte</label>--}}
+{{--            </div>--}}
+            <a href="{{route('password.request')}}" class="text-sm text-orange-700 hover:text-orange-600 justify-center">Ți-ai uitat parola?</a>
         </div>
         <button
             class="btn-primary bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 w-full"

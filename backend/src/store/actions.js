@@ -97,6 +97,7 @@ export function getProduct({}, id){
 }
 
 // export function getUser({}, id){
+
 //     return axiosClient.get(`/users/${id}`)
 // }
 
