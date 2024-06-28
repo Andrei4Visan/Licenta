@@ -16,7 +16,7 @@
             <div>
                 <input v-model="search" @change="getUsers(null)"
                        class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-orange-500 focus:border-orange-500 focus:z-10 sm:text-sm"
-                       placeholder="Type to Search users">
+                       placeholder="Caută utilizatori">
             </div>
         </div>
 

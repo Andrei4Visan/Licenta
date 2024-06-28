@@ -11,12 +11,12 @@
                     <option value="50">50</option>
                     <option value="100">100</option>
                 </select>
-                <span class="ml-3">Found {{customers.total}} customers</span>
+                <span class="ml-3">S-au găsit {{customers.total}} clienți</span>
             </div>
             <div>
                 <input v-model="search" @change="getCustomers(null)"
                        class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-orange-500 focus:border-orange-500 focus:z-10 sm:text-sm"
-                       placeholder="Type to Search customers">
+                       placeholder="Caută clienți">
             </div>
         </div>
 

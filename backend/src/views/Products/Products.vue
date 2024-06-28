@@ -4,7 +4,7 @@
         <h1 class="text-3xl font-semibold">Produse</h1>
         <button type="submit"
                 @click="showProductModal"
-                class="flex justify-center py-2 pc-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-800 hover:bg-white">
+                class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
             Adauga un nou produs:
         </button>
     </div>
